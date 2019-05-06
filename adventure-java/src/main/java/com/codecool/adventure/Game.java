@@ -1,14 +1,15 @@
 package com.codecool.adventure;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Game {
     String roomName = "outside";
     Map<String, Room> rooms = new HashMap<>();
-
-
+    List<String> inventory = new ArrayList<>();
 
     Game() {
         createRooms();
@@ -44,7 +45,6 @@ public class Game {
         Room hall1 = new Room("Hall", "You are in a hall");
         hall1.addDirection("south", "cave");
         rooms.put("hall1", hall1);
-
     }
 
     public void run() {
@@ -57,6 +57,16 @@ public class Game {
                 case "l":
                 case "look":
                     describeRoom();
+                    break;
+
+                case "inventory":
+                case "i":
+                    printInventory();
+                    break;
+
+                case "pick":
+                case "p":
+                    pickUpItem();
                     break;
 
                 case "q":
@@ -95,6 +105,21 @@ public class Game {
             }
         }
     }
+
+    private void printInventory(){
+        System.out.println(Arrays.toString(inventory.toArray()));
+    }
+
+    private void pickUpItem(){
+        String answer = Ui.input("> ");
+        for(String item : rooms.get(roomName).listOfItems){
+            if(answer.equals(item)){
+                inventory.add(item);
+            }
+        }
+        rooms.get(roomName).listOfItems.remove(answer);
+    }
+
     private boolean checkMovement(String direction){
         return rooms.get(roomName).exits.containsKey(direction);  
     }
