@@ -15,12 +15,10 @@ public class Game {
     }
 
     private void createRooms() {
-        HashMap<String, String> exitsOutside = new HashMap<>();
         Room outside = new Room("Outside", "You're standing outside a huge cave.");
         outside.addDirection("north", "cave");
         rooms.put("outside", outside);
 
-        HashMap<String, String> exitsCave = new HashMap<>();
         Room cave = new Room("Cave", "You're in a cave.");
         cave.addDirection("north", "hall1");
         cave.addDirection("south", "outside");
@@ -28,19 +26,16 @@ public class Game {
         cave.addDirection("east", "concierge");
         rooms.put("cave", cave);
 
-        HashMap<String, String> exitsArmory = new HashMap<>();
         Room armory = new Room("Armory", "You are in a room with weapons.");
         armory.addItemToList("Sword");
         armory.addDirection("east", "cave");
         rooms.put("armory", armory);
 
-        HashMap<String, String> exitsConcierge = new HashMap<>();
         Room concierge = new Room("Concierge", "Concierge desk.");
         concierge.addDirection("west", "cave");
         concierge.addItemToList("Golden key");
         rooms.put("concierge", concierge);
 
-        HashMap<String, String> exitsHall = new HashMap<>();
         Room hall1 = new Room("Hall", "You are in a hall");
         hall1.addDirection("south", "cave");
         rooms.put("hall1", hall1);
