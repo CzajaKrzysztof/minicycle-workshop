@@ -40,6 +40,7 @@ public class Game {
 
         Room hall1 = new Room("Hall", "You are in a hall");
         hall1.addDirection("south", "cave");
+        hall1.addDirection("north", "wizard");
         rooms.put("hall1", hall1);
 
         Room wizardRoom = new Room("Wizard", "IT'S A WIZARD'S ROOM!!!!");
