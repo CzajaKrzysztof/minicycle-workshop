@@ -114,6 +114,7 @@ public class Game {
         System.out.println("l - info about actual room");
         System.out.println("i - show inventory");
         System.out.println("pick or p - pick item");
+        System.out.println("use or u - use item");
         System.out.println("q - quit game");
         System.out.println("north or n - move in north direction");
         System.out.println("south or s - move in south direction");
