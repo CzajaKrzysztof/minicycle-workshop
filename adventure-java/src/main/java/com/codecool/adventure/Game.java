@@ -39,7 +39,7 @@ public class Game {
         HashMap<String, String> exitsHall = new HashMap<>();
         exitsHall.put("south", "cave");
         Room hall1 = new Room("Hall", "You are in a hall", exitsHall);
-        rooms.put("hall", hall1);
+        rooms.put("hall1", hall1);
 
     }
 
@@ -63,25 +63,25 @@ public class Game {
 
                 case "n":
                 case "north":
-                    moveNorth();
+                    move("north");
                     describeRoom();
                     break;
 
                 case "s":
                 case "south":
-                    moveSouth();
+                    move("south");
                     describeRoom();
                     break;
 
                 case "e":
                 case "east":
-                    moveEast();
+                    move("east");
                     describeRoom();
                     break;
 
                 case "w":
                 case "west":
-                    moveWest();
+                    move("west");
                     describeRoom();
                     break;
 
@@ -95,37 +95,10 @@ public class Game {
         return rooms.get(roomName).exits.containsKey(direction);  
     }
 
-    private void moveNorth(){
-        if(checkMovement("north")){
+    private void move(String direction){
+        if(checkMovement(direction)){
             Room currentRoom = rooms.get(roomName);
-            roomName = currentRoom.exits.get("north"); 
-        }else{
-            System.out.println("Cannot move there");
-        }
-    }
-
-    private void moveSouth(){
-        if(checkMovement("south")){
-            Room currentRoom = rooms.get(roomName);
-            roomName = currentRoom.exits.get("south"); 
-        }else{
-            System.out.println("Cannot move there");
-        }
-    }
-
-    private void moveWest(){
-        if(checkMovement("west")){
-            Room currentRoom = rooms.get(roomName);
-            roomName = currentRoom.exits.get("west"); 
-        }else{
-            System.out.println("Cannot move there");
-        }
-    }
-
-    private void moveEast(){
-        if(checkMovement("east")){
-            Room currentRoom = rooms.get(roomName);
-            roomName = currentRoom.exits.get("east"); 
+            roomName = currentRoom.exits.get(direction); 
         }else{
             System.out.println("Cannot move there");
         }
