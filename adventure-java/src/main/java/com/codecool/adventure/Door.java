@@ -8,4 +8,12 @@ public class Door {
         this.key = key;
         this.areOpened = areOpened;
     }
+
+    public boolean areOpen() {
+        return areOpened;
+    }
+
+    public String getKey() {
+        return key;
+    }
 }

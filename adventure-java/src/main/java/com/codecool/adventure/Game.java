@@ -131,7 +131,19 @@ public class Game {
     }
 
     private boolean checkMovement(String direction){
-        return rooms.get(roomName).exits.containsKey(direction);  
+        if(rooms.get(roomName).exits.containsKey(direction)) {
+            if(rooms.get(roomName).listOfDoors.containsKey(direction)) {
+                Door door = rooms.get(roomName).listOfDoors.get(direction);
+                if(door.areOpen()) {
+                    return true;
+                } else {
+                    System.out.println("You need " + door.getKey() + " to open.");
+                }
+            }
+        } else {
+            System.out.println("Cannot move there");
+        }
+        return false;  
     }
 
     private void move(String direction){
