@@ -9,41 +9,40 @@ public class Game {
     Map<String, Room> rooms = new HashMap<>();
 
 
+
     Game() {
         createRooms();
     }
 
     private void createRooms() {
         HashMap<String, String> exitsOutside = new HashMap<>();
-        exitsOutside.put("north", "cave");
-        Room outside = new Room("Outside", "You're standing outside a huge cave.", exitsOutside);
+        Room outside = new Room("Outside", "You're standing outside a huge cave.");
+        outside.addDirection("north", "cave");
         rooms.put("outside", outside);
 
         HashMap<String, String> exitsCave = new HashMap<>();
-        exitsCave.put("north", "hall1");
-        exitsCave.put("south", "outside");
-        exitsCave.put("west", "armory");
-        exitsCave.put("east", "concierge");
-        Room cave = new Room("Cave", "You're in a cave.", exitsCave);
+        Room cave = new Room("Cave", "You're in a cave.");
+        cave.addDirection("north", "hall1");
+        cave.addDirection("south", "outside");
+        cave.addDirection("west", "armory");
+        cave.addDirection("east", "concierge");
         rooms.put("cave", cave);
 
         HashMap<String, String> exitsArmory = new HashMap<>();
-        ArrayList<String> listOfItemsArmory = new ArrayList<>();
-        exitsArmory.put("east", "cave");
-        listOfItemsArmory.add("Sword");
-        Room armory = new Room("Armory", "You are in a room with weapons.", exitsArmory, listOfItemsArmory);
+        Room armory = new Room("Armory", "You are in a room with weapons.");
+        armory.addItemToList("Sword");
+        armory.addDirection("east", "cave");
         rooms.put("armory", armory);
 
         HashMap<String, String> exitsConcierge = new HashMap<>();
-        ArrayList<String> listOfItemsConcierge = new ArrayList<>();
-        exitsConcierge.put("west", "cave");
-        listOfItemsConcierge.add("Golden key");
-        Room concierge = new Room("Concierge", "Concierge desk.", exitsConcierge, listOfItemsConcierge);
+        Room concierge = new Room("Concierge", "Concierge desk.");
+        concierge.addDirection("west", "cave");
+        concierge.addItemToList("Golden key");
         rooms.put("concierge", concierge);
 
         HashMap<String, String> exitsHall = new HashMap<>();
-        exitsHall.put("south", "cave");
-        Room hall1 = new Room("Hall", "You are in a hall", exitsHall);
+        Room hall1 = new Room("Hall", "You are in a hall");
+        hall1.addDirection("south", "cave");
         rooms.put("hall1", hall1);
 
     }
@@ -116,5 +115,6 @@ public class Game {
         System.out.println();
         System.out.println(room.description);
         System.out.println("Possible exits:" + room.exits.keySet().toString());
+        System.out.println("There are items on the floor: " + room.listOfItems.toString());
     }
 }

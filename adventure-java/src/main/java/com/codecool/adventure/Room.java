@@ -11,15 +11,19 @@ public class Room {
     public final Map<String, String> exits;
     public List<String> listOfItems;
 
-    public Room(String title, String description, HashMap<String, String> exits){
+    public Room(String title, String description){
         this.title = title;
         this.description = description;
-        this.exits = exits;
-        
+        listOfItems = new ArrayList<>();
+        exits = new HashMap<>();
     }
-    public Room(String title, String description, HashMap<String, String> exits, ArrayList<String> listOfItems){
-        this(title, description, exits);
-        this.listOfItems = listOfItems;
+
+    public void addItemToList(String item){
+        listOfItems.add("Sword");
+    }
+
+    public void addDirection(String direction, String room) {
+        exits.put(direction, room);
     }
 }
 
