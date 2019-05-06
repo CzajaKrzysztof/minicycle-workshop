@@ -31,6 +31,7 @@ public class Game {
         armory.addItemToList("Sword");
         armory.addDirection("east", "cave");
         rooms.put("armory", armory);
+        armory.addDoors(new Door("Golden key"), "west");
 
         Room concierge = new Room("Concierge", "Concierge desk.");
         concierge.addDirection("west", "cave");
