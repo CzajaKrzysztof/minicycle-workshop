@@ -1,13 +1,19 @@
 package com.codecool.adventure;
 
 public class Door {
-    private boolean areOpened;
+    public boolean areOpened;
     private final String key;
 
     public Door(String key){
+        areOpened = false;
         this.key = key;
     }
-    public boolean areOpened(){
+
+    public boolean areDoorOpen() {
         return areOpened;
+    }
+
+    public String getKey() {
+        return key;
     }
 }

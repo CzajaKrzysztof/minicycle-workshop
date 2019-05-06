@@ -26,12 +26,12 @@ public class Game {
         cave.addDirection("west", "armory");
         cave.addDirection("east", "concierge");
         rooms.put("cave", cave);
+        cave.addDoors("west", new Door("Golden key"));
 
         Room armory = new Room("Armory", "You are in a room with weapons.");
         armory.addItemToList("Sword");
         armory.addDirection("east", "cave");
         rooms.put("armory", armory);
-        armory.addDoors(new Door("Golden key"), "west");
 
         Room concierge = new Room("Concierge", "Concierge desk.");
         concierge.addDirection("west", "cave");
@@ -63,6 +63,11 @@ public class Game {
                 case "pick":
                 case "p":
                     pickUpItem();
+                    break;
+
+                case "use":
+                case "u":
+                    useKey();
                     break;
 
                 case "q":
@@ -132,16 +137,37 @@ public class Game {
         rooms.get(roomName).listOfItems.remove(answer);
     }
 
+    private void useKey() {
+        System.out.println("Inventory: ");
+        printInventory();
+        String key = Ui.input("Pick item to use: ");
+        String doorString = Ui.input("Pick door to open: ");
+        Door door = rooms.get(roomName).listOfDoors.get(doorString);
+        door.areOpened = true;
+    }
+
     private boolean checkMovement(String direction){
-        return rooms.get(roomName).exits.containsKey(direction);  
+        if(rooms.get(roomName).exits.containsKey(direction)) {
+            if(rooms.get(roomName).listOfDoors.containsKey(direction)) {
+                Door door = rooms.get(roomName).listOfDoors.get(direction);
+                if(door.areDoorOpen()) {
+                    return true;
+                } else {
+                    System.out.println("You need " + door.getKey() + " to open.");
+                }
+            } else {
+                return true;
+            }
+        } else {
+            System.out.println("Cannot move there");
+        }
+        return false;  
     }
 
     private void move(String direction){
         if(checkMovement(direction)){
             Room currentRoom = rooms.get(roomName);
             roomName = currentRoom.exits.get(direction); 
-        }else{
-            System.out.println("Cannot move there");
         }
     }
 
