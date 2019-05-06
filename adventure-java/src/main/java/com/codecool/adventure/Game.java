@@ -107,6 +107,7 @@ public class Game {
 
     private void pickUpItem(){
         String answer = Ui.input("> ");
+        System.out.println("Enter item which you want to pick up: ");
         for(String item : rooms.get(roomName).listOfItems){
             if(answer.equals(item)){
                 inventory.add(item);
