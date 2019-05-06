@@ -1,5 +1,6 @@
 package com.codecool.adventure;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,13 +28,17 @@ public class Game {
         rooms.put("cave", cave);
 
         HashMap<String, String> exitsArmory = new HashMap<>();
+        ArrayList<String> listOfItemsArmory = new ArrayList<>();
         exitsArmory.put("east", "cave");
-        Room armory = new Room("Armory", "You are in a room with weapons.", exitsArmory);
+        listOfItemsArmory.add("Sword");
+        Room armory = new Room("Armory", "You are in a room with weapons.", exitsArmory, listOfItemsArmory);
         rooms.put("armory", armory);
 
         HashMap<String, String> exitsConcierge = new HashMap<>();
+        ArrayList<String> listOfItemsConcierge = new ArrayList<>();
         exitsConcierge.put("west", "cave");
-        Room concierge = new Room("Concierge", "Concierge desk.", exitsConcierge);
+        listOfItemsConcierge.add("Golden key");
+        Room concierge = new Room("Concierge", "Concierge desk.", exitsConcierge, listOfItemsConcierge);
         rooms.put("concierge", concierge);
 
         HashMap<String, String> exitsHall = new HashMap<>();
