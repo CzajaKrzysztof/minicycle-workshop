@@ -140,6 +140,7 @@ public class Game {
         System.out.println("l - info about actual room");
         System.out.println("i - show inventory");
         System.out.println("pick or p - pick item");
+        System.out.println("use or u - use item");
         System.out.println("q - quit game");
         System.out.println("north or n - move in north direction");
         System.out.println("south or s - move in south direction");
@@ -148,7 +149,8 @@ public class Game {
     }
 
     private void pickUpItem(){
-        String answer = Ui.input("> Enter item which you want to pick up: ");
+        System.out.println("Enter item which you want to pick up: ");
+        String answer = Ui.input("");
         for(String item : rooms.get(roomName).listOfItems){
             if(answer.equals(item)){
                 inventory.add(item);
@@ -160,8 +162,11 @@ public class Game {
     private void useKey() {
         System.out.println("Inventory: ");
         printInventory();
-        String key = Ui.input("Pick item to use: ");
-        String doorString = Ui.input("Pick door to open: ");
+        System.out.println("Pick item to use: ");
+        String key = Ui.input("");
+        System.out.println(rooms.get(roomName).listOfDoors.keySet().toString());
+        System.out.println("Pick door to open: ");
+        String doorString = Ui.input("");
         Door door = rooms.get(roomName).listOfDoors.get(doorString);
         door.areOpened = true;
     }
