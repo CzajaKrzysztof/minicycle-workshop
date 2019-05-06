@@ -23,14 +23,14 @@ public class Room {
     }
 
     public void addItemToList(String item){
-        listOfItems.add("Sword");
+        listOfItems.add(item);
     }
 
     public void addDirection(String direction, String room) {
         exits.put(direction, room);
     }
 
-    public void addDoors(Door doors, String direction){
+    public void addDoors(String direction, Door doors){
         listOfDoors.put(direction, doors);
     }
 
