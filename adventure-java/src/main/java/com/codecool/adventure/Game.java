@@ -41,6 +41,18 @@ public class Game {
         Room hall1 = new Room("Hall", "You are in a hall");
         hall1.addDirection("south", "cave");
         rooms.put("hall1", hall1);
+
+        Room wizardRoom = new Room("Wizard", "IT'S A WIZARD'S ROOM!!!!");
+        wizardRoom.addDirection("south", "hall1");
+        NonPlayerCharacter npc = new NonPlayerCharacter("Wizard");
+        wizardRoom.addNPC(npc);
+        npc.addSentence("- To mongolskie dziecko. \n - Nie mongolskie tylko Jedi!");
+        npc.addSentence("Adi, podobnie jak i Pele, którego za chwilę poznacie, reprezentuje bardzo ważną grupę społeczną, czyli jest bezrobotny.");
+        npc.addSentence("I nie trzaskaj drzwiami.");
+        npc.addSentence("Bunkrów nie ma, ale też jest zajebiście.");
+        npc.addSentence("Sąd sądem, ale sprawiedliwość musi być po naszej stronie.");
+        npc.addSentence("Czy tobie czasem, Wąski, sufit na łeb się nie spadł?");
+        rooms.put("wizard", wizardRoom);
     }
 
     public void run() {
@@ -104,11 +116,20 @@ public class Game {
                     printHelpCommand();
                     break;
 
+                case "t":
+                case "talk":
+                    talk();
+                    break;
+
                 default:
                     System.out.println("Unrecognized command: " + command);
                     break;
             }
         }
+    }
+
+    private void talk(){
+        rooms.get(roomName).listOfNPC.get(0).talk();
     }
 
     private void printInventory(){
