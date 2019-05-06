@@ -93,6 +93,10 @@ public class Game {
                     move("west");
                     describeRoom();
                     break;
+                case "h":
+                case "help":
+                    printHelpCommand();
+                    break;
 
                 default:
                     System.out.println("Unrecognized command: " + command);
@@ -103,6 +107,17 @@ public class Game {
 
     private void printInventory(){
         System.out.println(Arrays.toString(inventory.toArray()));
+    }
+    private void printHelpCommand(){
+        System.out.println("Available command:");
+        System.out.println("l - info about actual room");
+        System.out.println("i - show inventory");
+        System.out.println("pick or p - pick item");
+        System.out.println("q - quit game");
+        System.out.println("north or n - move in north direction");
+        System.out.println("south or s - move in south direction");
+        System.out.println("west or w - move in west direction");
+        System.out.println("east or e - move in east direction");
     }
 
     private void pickUpItem(){
