@@ -7,31 +7,40 @@ public class Game {
     String roomName = "outside";
     Map<String, Room> rooms = new HashMap<>();
 
+
     Game() {
         createRooms();
     }
 
     private void createRooms() {
-        Room outside = new Room(
-                "Outside",
-                "You're standing outside a huge cave."
-        );
+        HashMap<String, String> exits = new HashMap<>();
+        exits.put("north", "cave");
+        Room outside = new Room("Outside", "You're standing outside a huge cave.", exits);
         rooms.put("outside", outside);
+        exits.clear();
 
-        Room cave = new Room(
-                "Cave",
-                "You're in a cave."
-        );
+        exits.put("north", "hall1");
+        exits.put("south", "outside");
+        exits.put("west", "armory");
+        exits.put("east", "concierge");
+        Room cave = new Room("Cave", "You're in a cave.", exits);
         rooms.put("cave", cave);
+        exits.clear();
 
-        Room armory = new Room("Armory", "You are in a room with weapons.");
+        exits.put("east", "cave");
+        Room armory = new Room("Armory", "You are in a room with weapons.", exits);
         rooms.put("armory", armory);
+        exits.clear();
 
-        Room concierge = new Room("Concierge", "Concierge desk.");
+        exits.put("west", "cave");
+        Room concierge = new Room("Concierge", "Concierge desk.", exits);
         rooms.put("concierge", concierge);
+        exits.clear();
 
-        Room hall1 = new Room("Hall", "You are in a hall");
+        exits.put("south", "cave");
+        Room hall1 = new Room("Hall", "You are in a hall", exits);
         rooms.put("hall", hall1);
+        exits.clear();
     }
 
     public void run() {
@@ -52,11 +61,50 @@ public class Game {
                     playing = false;
                     break;
 
+                case "n":
+                case "north":
+                    moveNorth();
+                    break;
+
+                case "s":
+                case "south":
+                    moveSouth();
+                    break;
+
+                case "e":
+                case "east":
+                    moveEast();
+                    break;
+
+                case "w":
+                case "west":
+                    moveWest();
+                    break;
+
                 default:
                     System.out.println("Unrecognized command: " + command);
                     break;
             }
         }
+    }
+    private boolean checkMovement(String direction){
+        if()
+    }
+
+    private void moveNorth(){
+        for()
+    }
+
+    private void moveSouth(){
+
+    }
+
+    private void moveWest(){
+
+    }
+
+    private void moveEast(){
+
     }
 
     private void describeRoom() {
