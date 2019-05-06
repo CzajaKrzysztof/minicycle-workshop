@@ -127,7 +127,8 @@ public class Game {
     }
 
     private void pickUpItem(){
-        String answer = Ui.input("> Enter item which you want to pick up: ");
+        System.out.println("Enter item which you want to pick up: ");
+        String answer = Ui.input("");
         for(String item : rooms.get(roomName).listOfItems){
             if(answer.equals(item)){
                 inventory.add(item);
@@ -139,8 +140,11 @@ public class Game {
     private void useKey() {
         System.out.println("Inventory: ");
         printInventory();
-        String key = Ui.input("Pick item to use: ");
-        String doorString = Ui.input("Pick door to open: ");
+        System.out.println("Pick item to use: ");
+        String key = Ui.input("");
+        System.out.println(rooms.get(roomName).listOfDoors.keySet().toString());
+        System.out.println("Pick door to open: ");
+        String doorString = Ui.input("");
         Door door = rooms.get(roomName).listOfDoors.get(doorString);
         door.areOpened = true;
     }
