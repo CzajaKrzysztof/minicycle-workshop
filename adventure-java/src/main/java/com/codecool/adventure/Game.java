@@ -110,6 +110,6 @@ public class Game {
         System.out.println(room.title);
         System.out.println();
         System.out.println(room.description);
-        System.out.println("Possible exits:" + room.exits.toString());
+        System.out.println("Possible exits:" + room.exits.keySet().toString());
     }
 }
