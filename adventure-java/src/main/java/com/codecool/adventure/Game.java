@@ -13,34 +13,34 @@ public class Game {
     }
 
     private void createRooms() {
-        HashMap<String, String> exits = new HashMap<>();
-        exits.put("north", "cave");
-        Room outside = new Room("Outside", "You're standing outside a huge cave.", exits);
+        HashMap<String, String> exitsOutside = new HashMap<>();
+        exitsOutside.put("north", "cave");
+        Room outside = new Room("Outside", "You're standing outside a huge cave.", exitsOutside);
         rooms.put("outside", outside);
-        exits.clear();
 
-        exits.put("north", "hall1");
-        exits.put("south", "outside");
-        exits.put("west", "armory");
-        exits.put("east", "concierge");
-        Room cave = new Room("Cave", "You're in a cave.", exits);
+        HashMap<String, String> exitsCave = new HashMap<>();
+        exitsCave.put("north", "hall1");
+        exitsCave.put("south", "outside");
+        exitsCave.put("west", "armory");
+        exitsCave.put("east", "concierge");
+        Room cave = new Room("Cave", "You're in a cave.", exitsCave);
         rooms.put("cave", cave);
-        exits.clear();
 
-        exits.put("east", "cave");
-        Room armory = new Room("Armory", "You are in a room with weapons.", exits);
+        HashMap<String, String> exitsArmory = new HashMap<>();
+        exitsArmory.put("east", "cave");
+        Room armory = new Room("Armory", "You are in a room with weapons.", exitsArmory);
         rooms.put("armory", armory);
-        exits.clear();
 
-        exits.put("west", "cave");
-        Room concierge = new Room("Concierge", "Concierge desk.", exits);
+        HashMap<String, String> exitsConcierge = new HashMap<>();
+        exitsConcierge.put("west", "cave");
+        Room concierge = new Room("Concierge", "Concierge desk.", exitsConcierge);
         rooms.put("concierge", concierge);
-        exits.clear();
 
-        exits.put("south", "cave");
-        Room hall1 = new Room("Hall", "You are in a hall", exits);
+        HashMap<String, String> exitsHall = new HashMap<>();
+        exitsHall.put("south", "cave");
+        Room hall1 = new Room("Hall", "You are in a hall", exitsHall);
         rooms.put("hall", hall1);
-        exits.clear();
+
     }
 
     public void run() {
@@ -64,21 +64,25 @@ public class Game {
                 case "n":
                 case "north":
                     moveNorth();
+                    describeRoom();
                     break;
 
                 case "s":
                 case "south":
                     moveSouth();
+                    describeRoom();
                     break;
 
                 case "e":
                 case "east":
                     moveEast();
+                    describeRoom();
                     break;
 
                 case "w":
                 case "west":
                     moveWest();
+                    describeRoom();
                     break;
 
                 default:
@@ -88,23 +92,43 @@ public class Game {
         }
     }
     private boolean checkMovement(String direction){
-        if()
+        return rooms.get(roomName).exits.containsKey(direction);  
     }
 
     private void moveNorth(){
-        for()
+        if(checkMovement("north")){
+            Room currentRoom = rooms.get(roomName);
+            roomName = currentRoom.exits.get("north"); 
+        }else{
+            System.out.println("Cannot move there");
+        }
     }
 
     private void moveSouth(){
-
+        if(checkMovement("south")){
+            Room currentRoom = rooms.get(roomName);
+            roomName = currentRoom.exits.get("south"); 
+        }else{
+            System.out.println("Cannot move there");
+        }
     }
 
     private void moveWest(){
-
+        if(checkMovement("west")){
+            Room currentRoom = rooms.get(roomName);
+            roomName = currentRoom.exits.get("west"); 
+        }else{
+            System.out.println("Cannot move there");
+        }
     }
 
     private void moveEast(){
-
+        if(checkMovement("east")){
+            Room currentRoom = rooms.get(roomName);
+            roomName = currentRoom.exits.get("east"); 
+        }else{
+            System.out.println("Cannot move there");
+        }
     }
 
     private void describeRoom() {
@@ -113,5 +137,6 @@ public class Game {
         System.out.println(room.title);
         System.out.println();
         System.out.println(room.description);
+        System.out.println("Possible exits:" + room.exits.toString());
     }
 }
