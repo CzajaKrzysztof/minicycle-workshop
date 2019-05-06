@@ -7,4 +7,7 @@ public class Door {
     public Door(String key){
         this.key = key;
     }
+    public boolean areOpened(){
+        return areOpened;
+    }
 }
