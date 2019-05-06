@@ -12,6 +12,7 @@ public class Game {
     List<String> inventory = new ArrayList<>();
 
     Game() {
+        Ui.clearScreen();
         createRooms();
     }
 
@@ -47,7 +48,7 @@ public class Game {
         wizardRoom.addDirection("south", "hall1");
         NonPlayerCharacter npc = new NonPlayerCharacter("Wizard");
         wizardRoom.addNPC(npc);
-        npc.addSentence("- To mongolskie dziecko. \n - Nie mongolskie tylko Jedi!");
+        npc.addSentence("- To mongolskie dziecko. \n- Nie mongolskie tylko Jedi!");
         npc.addSentence("Adi, podobnie jak i Pele, którego za chwilę poznacie, reprezentuje bardzo ważną grupę społeczną, czyli jest bezrobotny.");
         npc.addSentence("I nie trzaskaj drzwiami.");
         npc.addSentence("Bunkrów nie ma, ale też jest zajebiście.");
@@ -59,9 +60,10 @@ public class Game {
     public void run() {
         describeRoom();
         boolean playing = true;
+        int talkCounter = 0;
         while (playing) {
             System.out.println();
-            String command = Ui.input("> ");
+            String command = Ui.input("");
             switch (command) {
                 case "l":
                 case "look":
@@ -112,6 +114,7 @@ public class Game {
                     move("west");
                     describeRoom();
                     break;
+
                 case "h":
                 case "help":
                     printHelpCommand();
@@ -119,9 +122,14 @@ public class Game {
 
                 case "t":
                 case "talk":
-                    talk();
+                    npcTalk();
+                    talkCounter ++;
+                    if(talkCounter == 3){
+                        playing = false;
+                        Ui.clearScreen();
+                        System.out.println("YOU WIN XD })");
+                    }
                     break;
-
                 default:
                     System.out.println("Unrecognized command: " + command);
                     break;
@@ -129,8 +137,8 @@ public class Game {
         }
     }
 
-    private void talk(){
-        rooms.get(roomName).listOfNPC.get(0).talk();
+    private void npcTalk(){
+        System.out.println(rooms.get(roomName).listOfNPC.get(0).talk());
     }
 
     private void printInventory(){
@@ -179,6 +187,7 @@ public class Game {
                 if(door.areDoorOpen()) {
                     return true;
                 } else {
+                    Ui.clearScreen();
                     System.out.println("You need " + door.getKey() + " to open.");
                 }
             } else {
@@ -194,6 +203,7 @@ public class Game {
         if(checkMovement(direction)){
             Room currentRoom = rooms.get(roomName);
             roomName = currentRoom.exits.get(direction); 
+            Ui.clearScreen();
         }
     }
 
