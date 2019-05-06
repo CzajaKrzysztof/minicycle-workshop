@@ -215,5 +215,8 @@ public class Game {
         System.out.println(room.description);
         System.out.println("Possible exits:" + room.exits.keySet().toString());
         System.out.println("There are items on the floor: " + room.listOfItems.toString());
+        if (room.listOfNPC.size() > 0) {
+            System.out.println("NPC in room: " + room.listOfNPC.get(0).toString());
+        }
     }
 }

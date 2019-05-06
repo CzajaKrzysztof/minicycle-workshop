@@ -21,4 +21,8 @@ public class NonPlayerCharacter {
         Random rand = new Random(); 
         return sentences.get(rand.nextInt(sentences.size())); 
     }
+
+    public String toString() {
+        return name;
+    }
 }
