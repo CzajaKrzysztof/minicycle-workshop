@@ -23,6 +23,15 @@ public class Game {
                 "You're in a cave."
         );
         rooms.put("cave", cave);
+
+        Room armory = new Room("Armory", "You are in a room with weapons.");
+        rooms.put("armory", armory);
+
+        Room concierge = new Room("Concierge", "Concierge desk.");
+        rooms.put("concierge", concierge);
+
+        Room hall1 = new Room("Hall", "You are in a hall");
+        rooms.put("hall", hall1);
     }
 
     public void run() {
